@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+    <struts>
+    	<package name="domitory" namespace="/domitory" extends="dorm-default">
+    		<action name="*_domitoryManager" class="shifan.action.domitory.domitoryManagerAction" method="{1}">
+    			<result name="{1}" >
+    				/domitory/{1}_domitoryManager.jsp
+    			</result>
+    			<result name="addsave" type="redirect">
+    					/domitory/list_domitoryManager.action
+    			</result>
+    			<result name="updatesave" type="redirect">
+    					/domitory/list_domitoryManager.action
+    			</result>
+    			<result name="del" type="redirect">
+    				/domitory/list_domitoryManager.action
+    			</result>
+    		</action>
+    		<action name="findDomitoryByBuildingID" class="shifan.action.domitory.findDomitoryAction" >
+    			<result name="success" type="json">
+    				<param name="root">domitorys</param>
+    			</result>
+    			
+    		</action>
+    		<action name="find" class="shifan.action.domitory.findDomitoryAction" 
+    		method="find">
+    			<result name="find">
+    				/domitory/list_domitoryManager.jsp
+    			</result>
+    		</action>
+    		
+    	</package>
+    
+    
+    </struts>

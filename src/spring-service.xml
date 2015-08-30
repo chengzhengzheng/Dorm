@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<bean id="buildingService" class="shifan.service.impl.BuildingServiceImpl">
+		<property name="buildingDao" ref="buildingDao"></property>
+	</bean>
+	<bean id="hygieneService" class="shifan.service.impl.HygieneServiceImpl">
+		<property name="hygieneDao" ref="hygieneDao"></property>
+		<property name="teacherDao" ref="teacherDao"></property>
+		<property name="domitoryDao" ref="domitoryDao"></property>
+	</bean>
+	
+	<bean id="teacherService" class="shifan.service.impl.TeacherServiceImpl">
+		<property name="teacherDao" ref="teacherDao"></property>
+	</bean>
+	
+	<bean id="domitoryService" class="shifan.service.impl.DomitoryServiceImpl">
+		<property name="buildingDao" ref="buildingDao"> </property>
+		<property name="domitoryDao" ref="domitoryDao"></property>
+	</bean>
+
+
+<bean id="tbService" class="shifan.service.impl.TBServiceImpl">
+		<property name="tbDao" ref="tbDao"> </property>
+		<property name="teacherDao" ref="teacherDao"></property>
+	</bean>
+	
+	<bean id="studentService" class="shifan.service.impl.StudentServiceImpl">
+		<property name="studentDao" ref="studentDao"/>
+		<property name="domitoryDao" ref="domitoryDao"/>
+		<property name="buildingDao" ref="buildingDao"/>
+	 </bean>
+</beans>

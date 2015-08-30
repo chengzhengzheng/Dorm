@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<include file="struts-student.xml" />
+	<include file="struts-teacher.xml" />
+	<include file="struts-domitory.xml" />
+	<include file="struts-building.xml" />
+	<include file="struts-hygiene.xml" />
+	<!-- 定义工程底层的package -->
+	<package name="dorm-default" extends="json-default" namespace="/">
+		<!-- 定义拦截器 -->
+		<interceptors>
+			<interceptor name="checklogin"
+				class="shifan.interceptor.CheckLoginInterceptor"></interceptor>
+			<!-- 覆盖defultStack中的exception设置，启用它的日志功能 -->
+			<interceptor-stack name="checkLogin">
+				<interceptor-ref name="checklogin" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">info</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 异常处理,将框架捕获的异常调用指定result处理 -->
+		<!-- <global-exception-mappings> <exception-mapping result="error" exception="java.lang.Exception"> 
+			</exception-mapping> </global-exception-mappings> -->
+		<!-- 全局登录验证 -->
+		<default-interceptor-ref name="checkLogin" />
+		<global-results>
+			<result name="login">
+				/common/Login.jsp
+			</result>
+			<result name="error">
+				/common/Login.jsp
+			</result>
+			<!--全局跳转 -->
+			<result name="exception">/common/error.jsp</result>
+		</global-results>
+		
+		<!-- 密码修改 -->
+		<action name="*_password" class="shifan.action.PasswordManager">
+			<result type="json" name="check">
+    				<param name="root">ok</param>
+    			</result>
+			<result name="update">
+				/common/updateSuccess.jsp
+			</result>
+		</action>
+		
+		
+		<action name="Quit" class="shifan.action.QuitAction">
+			<result name="success" type="redirect">
+				/student/login.action
+			</result>
+		</action>
+
+	</package>
+</struts>

@@ -1,0 +1,46 @@
+1、使用spring的面向切面变成添加登陆验证功能
+2、事物的处理
+3、登录权限验证 使用struts2中的拦截器进行登录验证
+4、使用spring中的aop机制进行事物管理  spring中的log拦截器进行日志等信息的记录
+spring中的aop是基于spring的AOP属于面向切面变成 实现方式是动态代理
+
+
+一般情况下、将jsp隐藏在WEB-INF里面、而调用action的时候如果需要进行拦截器验证就可以了，或者使用spring的aop
+进行登录验证
+
+1、用到的技术
+ ajax技术：
+ 	1、页面无刷新
+ 	2、不打断用户操作、用户体验号
+ 	3、按需获取数据、服务器与客户端数据传输量少
+ 	4、是一个标准技术、不需要下载任何插件
+ 	5、可以充分利用客户端的计算能力
+ 2、json技术
+    是一个数据交换标准、一般用户浏览器与服务器之间的数据转换、比如将一个java对象转换成一个可以被识别的javascript
+    对象
+    a、如何表示一个对象:
+    {"name":"zs","age":34}
+    属性名必须加引号、属性值如果是字符串则必须添加引号
+    数据类型：string、number、boolean、null、object
+   b、对象数组
+   c、如何将一个java对象转换成一个json字符串使用json库提供的工具
+   JSONObject jsonObj = JSONObject.fromObject(srcObj);
+   String jsonStr = jsonObj.toString();
+   d、数组或者list集合
+   	JSONArray jsonArray = JSONArray.fromObject(listObj);
+   	String jsonArr = jsonArray.toString();
+   	e、如何将一个json字符串转换成js对象
+   	
+   	
+   	如何实现在添加打分的情况下、add_adminHygiene.jsp当中
+   	当选择一个楼宇的时候、动态的向服务器发送请求获取该楼层上所有的
+   	为了降低难度、此处如果在打分的周内、一个宿舍如果已经打过分了、
+提示用户、该宿舍已经打过分了。可以进行分数的修改。
+
+如何动态的向服务器发送请求、获取宿舍信息
+		
+重复提交问题
+
+   	
+   	
+   	

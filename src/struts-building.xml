@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="building" namespace="/building" extends="dorm-default">
+		<action name="*_buildingManager" class="shifan.action.building.BuildingManagerAction" method="{1}">
+			<result name="{1}">
+				/building/{1}_buildingManager.jsp
+			</result>
+			<result name="addsave" type="redirect">
+					/building/list_buildingManager.action
+			</result>
+			<result name="updatesave" type="redirect">
+				/building/list_buildingManager.action
+			</result>
+			
+			<result name="del" type="redirect">
+				/building/list_buildingManager.action
+			</result>
+		</action>
+		
+		
+		<action name="queryBuilding" class="shifan.action.building.QueryBuildingManager">
+			<result name="success">
+				/building/list_buildingManager.jsp
+			</result>
+		</action>
+		
+		
+		
+		<!-- 配置管理员模块 -->
+		<action name="*_TBManager" class="shifan.action.building.TBManagerAction" method="{1}">
+			<result name="{1}" >
+				/building/list_TBManager.jsp
+			</result>
+			<result name="addsave" type="redirect">
+				/building/list_TBManager.action
+			</result>
+			<result name="addFail">
+				/building/error.jsp
+			</result>
+			<result name="del" type="redirect">
+				/building/list_TBManager.action
+			</result>
+		</action>
+	</package>
+
+
+
+</struts>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="student" namespace="/student" extends="dorm-default">
+		<action name="login">
+			<interceptor-ref name="defaultStack" />
+			<result>/common/Login.jsp</result>
+		</action>
+		<action name="GoLogin" class="shifan.action.GoLoginAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="admin">
+				/common/Index.jsp
+			</result>
+			<result name="teacher">
+				/teacher/Index.jsp
+			</result>
+			<result name="fail">
+				/common/Login.jsp
+			 </result>
+			<result name="review" type="redirect">
+				${url}
+			</result>
+		</action>
+		
+		<!-- 学生的增删改查 -->
+		<action name="*_studentManager" class="shifan.action.student.StudentManagerAction"
+			method="{1}">
+			<interceptor-ref name="checkLogin" />
+			
+			<result name="{1}">
+				/student/{1}_studentManager.jsp
+			</result>
+			<result name="list">
+				/student/list_studentManager.jsp
+			</result>
+			<result name="add" type="redirect">
+				/student/list_studentManager.action
+			</result>
+			<result name="updatesave" type="redirect">
+				/student/list_studentManager.action
+			</result>
+			<result name="del" type="redirect">
+				/student/list_studentManager.action
+			</result>
+		</action>
+		<action name="queryManager" class="shifan.action.student.queryStudentsAction">
+			<result name="success">
+				/student/list_studentManager.jsp
+			</result>
+		</action>
+		<action name="queryMyStudent" class="shifan.action.student.queryStudentsAction" method="queryMyStudent">
+			<result name="queryMyStudent">
+				/student/listMyStudent_studentManager.jsp
+			</result>
+		</action>
+		
+		
+		<!-- 学生入住 -->
+		<action name="StudentRZ" class="shifan.action.student.StudentRZ">
+			<result name="success">
+				/student/StudentRZ.jsp
+			</result>
+			<result name="save" type="redirect">
+				/student/list_studentManager.action
+			</result>
+			<result name="nostudent">
+				/student/nostudent.jsp
+			</result>
+			<result name="hasdomitory">
+				/student/hasdomitory.jsp
+			</result>
+		</action>
+		
+		<!-- 学生调换宿舍 -->
+		<action name="StudentTH" class="shifan.action.student.StudentTH">
+			<result name="success">
+				/student/StudentTH2.jsp
+			</result>
+			<result name="save">
+				/student/StudentTHSuccess.jsp
+			</result>
+			<result name="nostudent">
+				/student/nostudent.jsp
+			</result>
+			<result name="nodomitory">
+				/student/nodomitory.jsp
+			</result>
+		 </action>
+		 
+		 <!-- 管理教师的楼宇 -->
+		 <action name="list_MyBuilding" class="shifan.action.teacher.MyBuildingAction">
+		 	
+		 </action>
+	</package>
+
+
+</struts>

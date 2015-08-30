@@ -1,0 +1,16 @@
+18、完成卫生评比的编写：
+完成卫生评比当中的添加平跟管理
+3、增加打分：
+	building_ID、(如果是全部楼宇，从全部楼宇中选择，如果指定了楼宇、则该值默认就是那个楼宇)
+	domitory_ID(选择了楼宇之后、从该楼宇中选择宿舍号)
+	week(自动默认为当前选择的周数、如果不指定周数、默认为第一周)
+	score
+	teacher_ID(默认为当前登录用户)
+	day、默认为当前时间 new Data();
+	
+struts2中配置：
+  result:
+  admin
+  teacher
+  success:负责将结果转发到list当中显示
+   error

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 指定properties文件所在位置 -->
+	<context:property-placeholder location="classpath:dbcp.properties"/>
+	<!-- 定义dataSource数据源 -->
+	<bean id="MyDataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+	</bean>
+	
+	<bean id="studentDao"  class="shifan.dao.impl.StudentDAOImpl">
+		<property name="dataSource" ref="MyDataSource"/>
+	</bean>
+	
+	<bean id="teacherDao" class="shifan.dao.impl.TeacherDAOImpl">
+		<property name="dataSource" ref="MyDataSource"/>
+	</bean>
+	
+	<bean id="buildingDao" class="shifan.dao.impl.BuildingDAOImpl">
+		<property name="dataSource" ref="MyDataSource"/>
+	</bean>
+	
+	<bean id="hygieneDao" class="shifan.dao.impl.HygieneDAOImpl">
+		<property name="dataSource" ref="MyDataSource"></property>
+		<property name="domitoryDao" ref="domitoryDao"></property>
+	</bean>
+	
+	<bean id="domitoryDao" class="shifan.dao.impl.DomitoryDAOImpl">
+		<property name="dataSource" ref="MyDataSource"></property>
+	</bean>
+	<bean id="tbDao" class="shifan.dao.impl.TBDAOImpl">
+		<property name="dataSource" ref="MyDataSource"></property>
+	</bean>
+	
+	
+
+
+	
+</beans>

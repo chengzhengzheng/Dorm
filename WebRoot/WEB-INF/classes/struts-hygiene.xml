@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="hygiene" namespace="/hygiene" extends="dorm-default">
+		<action name="*_hygieneManager" class="shifan.action.hygiene.HygieneManagerAction" method="{1}">
+			<result name="admin">
+				/hygiene/{1}_adminHygiene.jsp
+			</result>
+			<result name="teacher">
+				/hygiene/{1}_teacherHygiene.jsp
+			</result>
+			<result name="submit" type="redirect">
+				/hygiene/list_hygieneManager.action
+			</result>
+			<result name="query"  type="redirect">
+				/hygiene/list_hygieneManager.action
+			</result>
+			<result name="list">
+				/hygiene/list_adminHygiene.jsp
+			</result>
+		</action>
+		
+		<action name="query" class="shifan.action.hygiene.QueryHygieneAction">
+			<result name="success" >
+				/hygiene/list_adminHygiene.jsp
+			</result>
+		</action>
+	</package>
+
+
+
+</struts>

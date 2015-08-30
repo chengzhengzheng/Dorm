@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+    <struts>
+    	<package name="teacher" extends="dorm-default" namespace="/teacher">
+    		<action name="findTeacherByBuildingID" class="shifan.action.teacher.findTeachersByBuildingID">
+    			<result type="json">
+    				<param name="root">teachers</param>
+    			</result>
+    		</action>
+    		<action name="*_teacherManager" class="shifan.action.teacher.TeacherManagerAction"
+    		method="{1}">
+    			<result name="{1}">
+    				/teacher/{1}_TeacherManager.jsp
+    			</result>
+    			<result name="add_save" type="redirect">
+    				/teacher/list_teacherManager.action
+    			</result>
+    			<result name="update_save" type="redirect">
+    				/teacher/list_teacherManager.action
+    			</result>
+    			<result name="del_save" type="redirect">
+    				/teacher/list_teacherManager.action
+    			</result>
+    			
+    			
+    		</action>
+    		
+    		<action name="queryManager" class="shifan.action.teacher.queryTeachersAction">
+    			<result name="success">
+    				/teacher/list_TeacherManager.jsp
+    			</result>
+    		</action>
+    	</package>
+    
+    </struts>
